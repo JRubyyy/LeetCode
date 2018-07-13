@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> nums;
+        for (int i=0; i<numbers.size()-1; i++)
+        {
+            int k = binarySearch(numbers,i+1,numbers.size()-1,target-numbers[i]);
+            if (k != -1) 
+            {
+                nums.push_back(i+1);
+                nums.push_back(k+1);
+                break;
+            }
+        }
+        return nums;
+    }
+    
+    int binarySearch(vector<int> nums,int l,int r,int target)
+    {
+        while (l <= r)
+        {
+            int mid = l + (r-l)/2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] > target) r = mid-1;
+            else l = mid+1;
+        }
+        return -1;
+    }
+};
