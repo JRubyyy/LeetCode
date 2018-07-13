@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int freqS[256] = {0};
+        int freqP[256] = {0};
+        int l = 0,r = -1;
+        vector<int> vec;
+        
+        for (int i=0; i<p.size(); i++)
+            freqP[p[i]] ++;
+        while (l < s.size())
+        {
+            if (r+1 < s.size() && freqS[s[r+1]]+1 <= freqP[s[r+1]]) freqS[s[++r]] ++;
+            else freqS[s[l++]] --;
+            if (r-l+1 == p.size()) vec.push_back(l);
+        }
+        return vec;
+    }
+};
