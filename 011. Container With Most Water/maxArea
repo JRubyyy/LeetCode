@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        assert(height.size() >= 2);
+        int i = 0,j = height.size()-1;
+        int maxium = 0;
+        int minEndPoint;
+        while (i < j)
+        {
+            if (height[i] >= height[j]) minEndPoint = height[j];
+            else minEndPoint = height[i];
+            if ((j - i)*minEndPoint > maxium) maxium = (j - i)*minEndPoint;
+            if (height[i] >= height[j]) j --;
+            else i ++;
+        }
+        return maxium;
+    }
+};
