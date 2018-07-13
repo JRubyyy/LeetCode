@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        // 二分搜索
+        vector<int> position;
+        int l = 0,r = nums.size()-1;
+        while (l <= r)
+        {
+            int mid = l + (r-l)/2;
+            if (nums[mid] == target) 
+            {
+                int mid2 = mid,mid3 = mid;
+                while (nums[-- mid2] == target && mid2 >= 0);
+                while (nums[++ mid3] == target && mid3 <= nums.size()-1);
+                position.push_back(mid2+1);
+                position.push_back(mid3-1);
+                return position;
+            }
+            
+            if (target > nums[mid]) l = mid + 1;
+            else r = mid - 1;
+        }
+        int arr[2] = {-1,-1};
+        return vector<int>(arr,arr+2);
+    }
+};
