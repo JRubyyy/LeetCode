@@ -1,0 +1,24 @@
+class Solution {
+public:
+    // 时间复杂度: O(nlogn)
+    // 空间复杂度: O(1)
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        int m = g.size(); // 小朋友数量
+        int n = s.size(); // 饼干数量
+        sort(g.begin(),g.end(),greater<int>());
+        sort(s.begin(),s.end(),greater<int>());
+        
+        int si = 0,gi = 0; // si-->最大饼干；gi-->最贪心小朋友
+        int res = 0;
+        while (gi < m && si < n) {
+            if (s[si] >= g[gi]) { // 若能满足
+                res ++;
+                si ++;
+                gi ++;
+            } else {
+                gi ++;
+            }
+        }
+        return res;
+    }
+};
