@@ -15,7 +15,7 @@ private:
         if (memo[index][sum] != -1) return memo[index][sum] == 1;
         
         // 尝试用[0...index-1]这些nums填充大小为sum的背包
-        memo[index][sum] = (tryPartition(nums,index-1,sum) || tryPartition(nums,index-1,sum - nums[index]) ? 1 : 0);
+        memo[index][sum] = (tryPartition(nums,index-1,sum) || tryPartition(nums,index-1,sum - nums[index])) ? 1 : 0;
         return memo[index][sum] == 1;
     }
 public:
