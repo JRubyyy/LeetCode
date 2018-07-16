@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        
+        // 第76组数据超时
+        int l = 0,r = 0;
+        int res = 0;
+        int multiply = 1;
+        while (l < nums.size()) {
+            
+            if (r < nums.size() && multiply*nums[r] < k) {
+                multiply = multiply*nums[r ++];
+                res ++;
+            } else {
+                multiply = 1;
+                r = ++ l;                
+            }
+        }
+        return res;
+    }
+};
